@@ -5,7 +5,6 @@ import Modal from "./components/Modal";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {startGame ? "" : <Modal />}
     <App />
   </React.StrictMode>
 );
