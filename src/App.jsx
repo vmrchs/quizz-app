@@ -8,8 +8,7 @@ function App() {
 
   return (
     <main className="App">
-      {/* {startGame ? "" : <Modal />} */}
-      <Modal />
+      {startGame ? "" : <Modal handleClick={() => setStartGame(true)} />}
       <Quiz />
     </main>
   );

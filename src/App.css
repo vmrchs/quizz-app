@@ -46,7 +46,7 @@ h3 {
   height: 100vh;
   width: 100vw;
   background-color: #f7f5fb;
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -60,15 +60,15 @@ h3 {
   align-items: center;
   justify-content: center;
   max-width: 800px;
-  margin: auto;
+  margin: 0 auto;
   z-index: 0;
-  margin-top: 100px;
+  margin-top: 20px;
   gap: 20px;
 }
 
 .quiz hr {
   align-self: center;
-  margin: auto;
+  margin: 10px auto;
   width: 550px;
 }
 
@@ -82,7 +82,8 @@ h3 {
 .question--text {
   font-size: 18px;
   font-weight: 700;
-  align-self: center;
+  text-align: center;
+  width: 750px;
 }
 
 .question--choices {
@@ -112,7 +113,6 @@ h3 {
 }
 
 .check-answers {
-  margin-top: 20px;
   border: none;
   padding: 15px 20px;
 }

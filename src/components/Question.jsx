@@ -7,11 +7,10 @@ function shuffleArray(array) {
   }
 }
 
-export default function Question({
-  question,
-  correct_answer,
-  incorrect_answers,
-}) {
+export default function Question(
+  { question, correct_answer, incorrect_answers },
+  isSelected
+) {
   const answers = [...incorrect_answers, correct_answer];
 
   shuffleArray(answers);
@@ -28,7 +27,7 @@ export default function Question({
             key={index}
             className="question--answer"
             dangerouslySetInnerHTML={{ __html: item }}
-            onClick={() => isSelected(index)}
+            onClick={() => setIsSelected(!isSelected)}
           ></button>
         ))}
       </div>

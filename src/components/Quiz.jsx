@@ -18,26 +18,22 @@ export default function Quiz() {
     });
   }
 
+  function isRight() {}
+
   React.useEffect(() => {
-    const abortController = new AbortController();
-    fetch("https://opentdb.com/api.php?amount=5&type=multiple", {
-      signal: abortController.signal,
-    })
+    fetch("https://opentdb.com/api.php?amount=5&type=multiple")
       .then((res) => res.json())
       .then(({ results }) => {
         setQuiz(results);
       });
-    return () => {
-      abortController.abort();
-    };
   }, []);
 
   return (
     quiz && (
       <div className="quiz">
-        {quiz.map((prop, index) => (
+        {quiz.map((props, index) => (
           <div key={index}>
-            <Question {...prop} />
+            <Question {...props} selected={isSelected} />
             <hr />
           </div>
         ))}
