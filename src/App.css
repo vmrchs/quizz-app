@@ -46,7 +46,7 @@ h3 {
   height: 100vh;
   width: 100vw;
   background-color: #f7f5fb;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -58,8 +58,18 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  max-width: 800px;
+  margin: auto;
   z-index: 0;
+  margin-top: 100px;
+  gap: 20px;
+}
+
+.quiz hr {
+  align-self: center;
+  margin: auto;
+  width: 550px;
 }
 
 .question {
@@ -72,9 +82,13 @@ h3 {
 .question--text {
   font-size: 18px;
   font-weight: 700;
+  align-self: center;
 }
 
 .question--choices {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .question--answer {
@@ -82,6 +96,7 @@ h3 {
   color: #293264;
   border: 1px solid #4d5b9e;
   margin-left: 10px;
+  width: 150px;
 }
 
 .selected {

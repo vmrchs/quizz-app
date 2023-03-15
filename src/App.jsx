@@ -4,6 +4,8 @@ import Modal from "./components/Modal";
 import "./App.css";
 
 function App() {
+  const [startGame, setStartGame] = React.useState(false);
+
   return (
     <main className="App">
       {/* {startGame ? "" : <Modal />} */}

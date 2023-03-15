@@ -1,38 +1,48 @@
 import React from "react";
 import Question from "./Question";
 
-//Fetch questions from the api
-// Insert them into a component
 //Create a function to select an answer
 // Create another function to check correct answers
 
 export default function Quiz() {
-  const [question, setQuestion] = React.useState({
-    question: "",
-    correct_answer: "",
-    incorrect_answers: "",
-  });
-  const [quiz, setQuiz] = React.useState([]);
+  const [quiz, setQuiz] = React.useState(undefined);
+  const [isSelected, setIsSelected] = React.useState(false);
+
+  function select(index) {
+    setIsSelected((prevState) => {
+      return prevState.map((answer) => {
+        return answer.index === index
+          ? { ...answer, selected: !answer.isSelected }
+          : { ...answer };
+      });
+    });
+  }
 
   React.useEffect(() => {
-    fetch("https://opentdb.com/api.php?amount=5&type=multiple")
+    const abortController = new AbortController();
+    fetch("https://opentdb.com/api.php?amount=5&type=multiple", {
+      signal: abortController.signal,
+    })
       .then((res) => res.json())
-      .then((data) => console.log(JSON.stringify(data)));
+      .then(({ results }) => {
+        setQuiz(results);
+      });
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   return (
-    <div className="quiz">
-      <Question />
-      <hr />
-      <Question />
-      <hr />
-      <Question />
-      <hr />
-      <Question />
-      <hr />
-      <Question />
-      <hr />
-      <button className="check-answers">Check answers</button>
-    </div>
+    quiz && (
+      <div className="quiz">
+        {quiz.map((prop, index) => (
+          <div key={index}>
+            <Question {...prop} />
+            <hr />
+          </div>
+        ))}
+        <button className="check-answers">Check answers</button>
+      </div>
+    )
   );
 }
