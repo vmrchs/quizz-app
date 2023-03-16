@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
+// TO DO:
+// - Shuffle answers array after they are fetch
+// - Check if selected answer is the same as correct_answer (When pressing the button on Quiz component)
+// - Change selected answer and correct_answer background to green or red
+// - Return the number of correct answers to be displayed at Quiz component
 
 export default function Question({
   question,
@@ -15,10 +14,7 @@ export default function Question({
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const answers = [...incorrect_answers, correct_answer];
 
-  React.useEffect(() => {
-    shuffleArray(answers);
-  }, []);
-
+  // Maybe put this one on Quiz and pass it as prop
   const handleAnswerClick = (answer) => {
     if (selectedAnswer === answer) {
       setSelectedAnswer(null);
