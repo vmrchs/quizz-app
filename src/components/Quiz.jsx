@@ -6,17 +6,6 @@ import Question from "./Question";
 
 export default function Quiz() {
   const [quiz, setQuiz] = React.useState(undefined);
-  const [isSelected, setIsSelected] = React.useState(false);
-
-  function select(index) {
-    setIsSelected((prevState) => {
-      return prevState.map((answer) => {
-        return answer.index === index
-          ? { ...answer, selected: !answer.isSelected }
-          : { ...answer };
-      });
-    });
-  }
 
   React.useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
@@ -31,7 +20,7 @@ export default function Quiz() {
       <div className="quiz">
         {quiz.map((props, index) => (
           <div key={index}>
-            <Question {...props} selected={isSelected} />
+            <Question {...props} />
             <hr />
           </div>
         ))}
