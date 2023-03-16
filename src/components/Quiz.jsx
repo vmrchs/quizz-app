@@ -18,8 +18,6 @@ export default function Quiz() {
     });
   }
 
-  function isRight() {}
-
   React.useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
       .then((res) => res.json())

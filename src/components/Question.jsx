@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -7,13 +7,25 @@ function shuffleArray(array) {
   }
 }
 
-export default function Question(
-  { question, correct_answer, incorrect_answers },
-  isSelected
-) {
+export default function Question({
+  question,
+  correct_answer,
+  incorrect_answers,
+}) {
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const answers = [...incorrect_answers, correct_answer];
 
-  shuffleArray(answers);
+  React.useEffect(() => {
+    shuffleArray(answers);
+  }, []);
+
+  const handleAnswerClick = (answer) => {
+    if (selectedAnswer === answer) {
+      setSelectedAnswer(null);
+    } else {
+      setSelectedAnswer(answer);
+    }
+  };
 
   return (
     <div className="question">
@@ -25,9 +37,11 @@ export default function Question(
         {answers.map((item, index) => (
           <button
             key={index}
-            className="question--answer"
+            className={`question--answer ${
+              selectedAnswer === item ? "selected" : ""
+            }`}
             dangerouslySetInnerHTML={{ __html: item }}
-            onClick={() => setIsSelected(!isSelected)}
+            onClick={() => handleAnswerClick(item)}
           ></button>
         ))}
       </div>
