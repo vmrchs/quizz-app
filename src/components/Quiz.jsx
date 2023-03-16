@@ -53,7 +53,7 @@ export default function Quiz() {
           className="check-answers"
           onClick={gameOver ? restartGame : checkAnswers}
         >
-          Check answers
+          {gameOver ? "Restart" : "Check Answers"}
         </button>
       </div>
     )
