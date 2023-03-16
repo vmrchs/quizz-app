@@ -1,6 +1,7 @@
 import React from "react";
 import Question from "./Question";
 
+//Create a function to select an answer
 // Create another function to check correct answers
 
 export default function Quiz() {
