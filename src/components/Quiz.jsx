@@ -25,14 +25,9 @@ export default function Quiz() {
     fetchQuiz();
   }, []);
 
-  function checkAnswers() {
+  function checkAnswers(answer) {
     quiz.map((question, index) => {
-      console.log(`Question ${index + 1}: ${question.question}`);
-      console.log(`Correct answer: ${question.correct_answer}`);
-      console.log(
-        `Incorrect answers: ${question.incorrect_answers.join(", ")}`
-      );
-      if (question.selected === question.correct_answer) {
+      if (answer === question.correct_answer) {
         // Change selected answer background to green and add 1 to score
       } else {
         // Change selected answer to red and correct answer to green
@@ -50,7 +45,7 @@ export default function Quiz() {
       <div className="quiz">
         {quiz.map((props, index) => (
           <div key={index}>
-            <Question {...props} />
+            <Question {...props} checkAnswers={checkAnswers} />
             <hr />
           </div>
         ))}

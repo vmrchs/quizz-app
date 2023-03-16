@@ -46,6 +46,7 @@ export default function Question({
             }`}
             dangerouslySetInnerHTML={{ __html: item }}
             onClick={() => handleAnswerClick(item)}
+            checkAnswers={() => checkAnswers(selectedAnswer)}
           ></button>
         ))}
       </div>
