@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // TO DO:
 // - Check if selected answer is the same as correct_answer (When pressing the button on Quiz component)
@@ -11,17 +11,22 @@ export default function Question({
   incorrect_answers,
 }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [shuffledAnswers, setShuffledAnswers] = useState([]);
   const answers = [...incorrect_answers, correct_answer];
-  const shuffledAnswers = shuffleArray(answers);
+
+  useEffect(() => {
+    shuffleArray(answers);
+  }, [correct_answer]);
 
   function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+    if (!selectedAnswer) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      setShuffledAnswers(array);
     }
-    return array;
   }
-
   // Maybe put this one on Quiz and pass it as prop
   const handleAnswerClick = (answer) => {
     if (selectedAnswer === answer) {
@@ -46,7 +51,7 @@ export default function Question({
             }`}
             dangerouslySetInnerHTML={{ __html: item }}
             onClick={() => handleAnswerClick(item)}
-            checkAnswers={() => checkAnswers(selectedAnswer)}
+            // checkAnswers={() => checkAnswers(selectedAnswer)}
           ></button>
         ))}
       </div>

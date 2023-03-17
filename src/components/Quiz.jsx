@@ -23,20 +23,23 @@ export default function Quiz() {
     };
 
     fetchQuiz();
-  }, []);
+  }, [gameOver]);
 
   function checkAnswers(answer) {
     quiz.map((question, index) => {
       if (answer === question.correct_answer) {
         // Change selected answer background to green and add 1 to score
+        console.log("you got one right");
       } else {
-        // Change selected answer to red and correct answer to green
+        console.log("you got one wrong");
       }
       setGameOver(true);
     });
   }
 
   function restartGame() {
+    setGameOver(false);
+    fetchQuiz();
     // Fetch and setup
   }
 
