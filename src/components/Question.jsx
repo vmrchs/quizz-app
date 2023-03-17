@@ -48,10 +48,11 @@ export default function Question({
             key={index}
             className={`question--answer ${
               selectedAnswer === item ? "selected" : ""
+              // Here I'll need to check if the selection is correct or not and change its bg to green or red
             }`}
             dangerouslySetInnerHTML={{ __html: item }}
             onClick={() => handleAnswerClick(item)}
-            // checkAnswers={() => checkAnswers(selectedAnswer)}
+            results={() => checkAnswers(selectedAnswer)}
           ></button>
         ))}
       </div>

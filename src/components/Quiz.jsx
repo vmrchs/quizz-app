@@ -8,6 +8,7 @@ import Question from "./Question";
 export default function Quiz() {
   const [quiz, setQuiz] = React.useState(undefined);
   const [gameOver, setGameOver] = React.useState(false);
+  const [score, setScore] = React.useState(0);
 
   React.useEffect(() => {
     const fetchQuiz = async () => {
@@ -48,7 +49,7 @@ export default function Quiz() {
       <div className="quiz">
         {quiz.map((props, index) => (
           <div key={index}>
-            <Question {...props} checkAnswers={checkAnswers} />
+            <Question {...props} results={checkAnswers} />
             <hr />
           </div>
         ))}
