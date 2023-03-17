@@ -7,6 +7,8 @@ import React, { useState, useEffect } from "react";
 
 export default function Question({
   question,
+  onSelectAnswer,
+  questionIdx,
   correct_answer,
   incorrect_answers,
 }) {
@@ -29,6 +31,7 @@ export default function Question({
   }
   // Maybe put this one on Quiz and pass it as prop
   const handleAnswerClick = (answer) => {
+    onSelectAnswer(answer, questionIdx)
     if (selectedAnswer === answer) {
       setSelectedAnswer(null);
     } else {
@@ -52,7 +55,7 @@ export default function Question({
             }`}
             dangerouslySetInnerHTML={{ __html: item }}
             onClick={() => handleAnswerClick(item)}
-            results={() => checkAnswers(selectedAnswer)}
+            // results={() => checkAnswers(selectedAnswer)}
           ></button>
         ))}
       </div>
