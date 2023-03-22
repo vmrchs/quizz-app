@@ -8,7 +8,7 @@ import Question from "./Question";
 export default function Quiz() {
   const [quiz, setQuiz] = React.useState(undefined);
   const [gameOver, setGameOver] = React.useState(false);
-  const [selectedAnswers, setSelectedAnswers] = React.useState([])
+  const [selectedAnswers, setSelectedAnswers] = React.useState([]);
   const [score, setScore] = React.useState(0);
 
   React.useEffect(() => {
@@ -28,30 +28,32 @@ export default function Quiz() {
   }, [gameOver]);
 
   function onSelectAnswer(answer, questionIdx) {
-    console.log({answer, questionIdx})
+    console.log({ answer, questionIdx });
 
-    setSelectedAnswers(state => {
-      state[questionIdx] = answer
+    setSelectedAnswers((state) => {
+      state[questionIdx] = answer;
 
-      return state
-    })
-
+      return state;
+    });
   }
 
   function checkAnswers(answer) {
-    let score = 0
-    const correctAnswers = []
+    let score = 0;
+    const correctAnswers = [];
 
     quiz.map((question, index) => {
       if (selectedAnswers[index] === question.correct_answer) {
-        correctAnswers.push(index)
-        score++
+        correctAnswers.push(index);
+        score++;
       }
       setGameOver(true);
     });
 
-    window.alert("SEU SCORE É "+ score)
-    window.alert("VOCÊ ACERTOU AS PERGUNTAS " + correctAnswers.map(idx => idx + 1).join(', '))
+    window.alert("SEU SCORE É " + score);
+    window.alert(
+      "VOCÊ ACERTOU AS PERGUNTAS " +
+        correctAnswers.map((idx) => idx + 1).join(", ")
+    );
   }
 
   function restartGame() {
@@ -65,7 +67,11 @@ export default function Quiz() {
       <div className="quiz">
         {quiz.map((props, index) => (
           <div key={index}>
-            <Question {...props} onSelectAnswer={onSelectAnswer} questionIdx={index} />
+            <Question
+              {...props}
+              onSelectAnswer={onSelectAnswer}
+              questionIdx={index}
+            />
             <hr />
           </div>
         ))}

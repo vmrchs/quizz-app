@@ -31,7 +31,7 @@ export default function Question({
   }
   // Maybe put this one on Quiz and pass it as prop
   const handleAnswerClick = (answer) => {
-    onSelectAnswer(answer, questionIdx)
+    onSelectAnswer(answer, questionIdx);
     if (selectedAnswer === answer) {
       setSelectedAnswer(null);
     } else {
@@ -55,7 +55,7 @@ export default function Question({
             }`}
             dangerouslySetInnerHTML={{ __html: item }}
             onClick={() => handleAnswerClick(item)}
-            // results={() => checkAnswers(selectedAnswer)}
+            results={() => checkAnswers(selectedAnswer, question)}
           ></button>
         ))}
       </div>
