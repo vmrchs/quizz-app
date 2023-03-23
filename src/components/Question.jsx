@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-// TO DO:
-// - Check if selected answer is the same as correct_answer (When pressing the button on Quiz component)
-// - Change selected answer and correct_answer background to green or red
-// - Return the number of correct answers to be displayed at Quiz component
-
 export default function Question({
   question,
   onSelectAnswer,
@@ -17,6 +12,7 @@ export default function Question({
   const answers = [...incorrect_answers, correct_answer];
 
   useEffect(() => {
+    setSelectedAnswer(null);
     shuffleArray(answers);
   }, [correct_answer]);
 
@@ -29,7 +25,7 @@ export default function Question({
       setShuffledAnswers(array);
     }
   }
-  // Maybe put this one on Quiz and pass it as prop
+
   const handleAnswerClick = (answer) => {
     onSelectAnswer(answer, questionIdx);
     if (selectedAnswer === answer) {
@@ -50,12 +46,12 @@ export default function Question({
           <button
             key={index}
             className={`question--answer ${
-              selectedAnswer === item ? "selected" : ""
               // Here I'll need to check if the selection is correct or not and change its bg to green or red
+              selectedAnswer === item ? "selected" : ""
             }`}
             dangerouslySetInnerHTML={{ __html: item }}
             onClick={() => handleAnswerClick(item)}
-            results={() => checkAnswers(selectedAnswer, question)}
+            // results={() => checkAnswers(selectedAnswer, question)}
           ></button>
         ))}
       </div>

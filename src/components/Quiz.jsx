@@ -2,7 +2,10 @@ import React from "react";
 import Question from "./Question";
 
 // TO DO:
-// - Create a function to check correct answers when pressing the button, and pass it down to Question Component
+// - Review function that checks correct answers when pressing the button
+// - Change selected answer and correct_answer background to green or red
+// - Return the number of correct answers to be displayed at Quiz component
+// - After game over, use button to setup a new quiz
 // - After checking the answers, change the text and function of the button to fetch new questions and restart the game
 
 export default function Quiz() {
@@ -49,17 +52,18 @@ export default function Quiz() {
       setGameOver(true);
     });
 
-    window.alert("SEU SCORE É " + score);
+    window.alert("Total: " + score);
     window.alert(
-      "VOCÊ ACERTOU AS PERGUNTAS " +
+      "Você acertou as seguintes questões " +
         correctAnswers.map((idx) => idx + 1).join(", ")
     );
   }
 
   function restartGame() {
-    setGameOver(false);
-    fetchQuiz();
-    // Fetch and setup
+    if (gameOver) {
+      setGameOver(false);
+      fetchQuiz();
+    }
   }
 
   return (
